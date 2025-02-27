@@ -29,14 +29,20 @@ public class userController {
         return new ApiResponseBody<>("success", users, "Users retrived successfully!");
     }
 
-    @GetMapping("/id")
-    public ApiResponseBody<UserEntity> getUser(@PathVariable("id") int id,
-                                               @RequestBody UserEntity requestBody){
-        UserEntity updatedUser = userServices.updateOne(id,requestBody);
-        return new ApiResponseBody<>("success", updatedUser,"User Updated successfully!");
+    @GetMapping("/{id}")
+    public ApiResponseBody<UserEntity> getUser(@PathVariable("id") int id){
+        UserEntity user = userServices.getOne(id);
+        return new ApiResponseBody<>("success", user,"User Updated successfully!");
     }
 
-    @DeleteMapping("/id")
+    @PutMapping("/{id}")
+    public ApiResponseBody<UserEntity> updateUser(@PathVariable("id") int id,
+                                                  @RequestBody UserEntity requestBody){
+        UserEntity updatedUser = userServices.updateOne(id, requestBody);
+        return new ApiResponseBody<>("success", updatedUser, "");
+    }
+
+    @DeleteMapping("/{id}")
     public ApiResponseBody<Void> deleteUser(@PathVariable("id") int id){
         userServices.delete(id);
 

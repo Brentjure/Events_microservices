@@ -3,6 +3,7 @@ package com.example.events_users_microservices.entity;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
+@Table(name="users")
 @Entity
 public class UserEntity {
 
